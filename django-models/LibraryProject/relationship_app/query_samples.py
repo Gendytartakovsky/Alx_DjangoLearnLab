@@ -31,9 +31,9 @@ def create_sample_data():
 def run_queries():
     # 1. Query all books by a specific author
     author_name = "George Orwell"
-    orwell = Author.objects.get(name=author_name)
-    books_by_orwell = Book.objects.filter(author=orwell)
-    print(f"Books by {author_name}:", [book.title for book in books_by_orwell])
+    author = Author.objects.get(name=author_name)
+    books = Book.objects.filter(author=author)
+    print(f"Books by {author_name}:", [book.title for book in books])
 
     # 2. List all books in a library
     library_name = "Central Library"
