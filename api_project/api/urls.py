@@ -1,15 +1,13 @@
+from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import BookList, BookViewSet
-
-# Create the router and register your ViewSet
-router = DefaultRouter()
-router.register(r'books_all', BookViewSet, basename='book_all')
+from rest_framework.authtoken.views import obtain_auth_token  # <-- Import this
 
 urlpatterns = [
-    # Original list view (needed for checker)
-    path('books/', BookList.as_view(), name='book-list'),
+    path('admin/', admin.site.urls),
 
-    # Router-generated CRUD routes for BookViewSet
+    # Your API app routes
     path('', include(router.urls)),
+
+    # ✅ Token authentication endpoint
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
 ]
